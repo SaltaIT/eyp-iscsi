@@ -1,5 +1,7 @@
 class iscsi::params {
 
+  $package_name = 'iscsi-initiator-utils'
+
   case $::osfamily
   {
     'redhat':

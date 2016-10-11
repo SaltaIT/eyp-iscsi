@@ -6,10 +6,9 @@ class iscsi::install inherits iscsi {
 
   if($iscsi::manage_package)
   {
-    # package here, for example: 
-    #package { $iscsi::params::package_name:
-    #  ensure => $iscsi::package_ensure,
-    #}
+    package { $iscsi::params::package_name:
+      ensure => $iscsi::package_ensure,
+    }
   }
 
 }

@@ -12,7 +12,6 @@ class iscsi(
                           ) inherits iscsi::params{
 
   class { '::iscsi::install': } ->
-  class { '::iscsi::config': } ~>
   class { '::iscsi::service': } ->
   Class['::iscsi']
 
