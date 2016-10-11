@@ -1,7 +1,12 @@
-define iscsi::interface($interface=$name) {
+define iscsi::interface($interface = $name) {
 
   Exec{
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
+  }
+
+  if ! defined(Class['iscsi'])
+  {
+    fail('You must include the iscsi base class before using any iscsi defined resources')
   }
 
   # # iscsiadm -m iface -I eth2 -o new
