@@ -21,6 +21,7 @@ define iscsi::interface($interface = $name) {
   exec { "interface iscsi ${interface}":
     command => "bash -c 'iscsiadm -m iface -I ${interface} -o new ; iscsiadm -m iface -I ${interface} -n iface.net_ifacename -v ${interface} -o update'",
     unless  => "bash -c 'iscsiadm -m iface | grep ^${interface} | cut -f4 -d, | grep ${interface}'",
+    require => Class['iscsi::install'],
   }
 
 }
