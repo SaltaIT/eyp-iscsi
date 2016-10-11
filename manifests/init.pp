@@ -9,6 +9,7 @@ class iscsi(
                             $manage_docker_service = true,
                             $service_ensure        = 'running',
                             $service_enable        = true,
+                            $multipath             = true,
                           ) inherits iscsi::params{
 
   class { '::iscsi::install': } ->
