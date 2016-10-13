@@ -18,8 +18,8 @@ define iscsi::session($ifaces, $portals, $target = $name) {
 
   }
 
-  exec { "interface iscsi ${targetname}":
-    command => "bash -c 'iscsiadm -m discovery -p ${targetname} -t st; iscsiadm -m node -L automatic'",
+  exec { "interface iscsi ${target} ${ifaces} ${portals}":
+    command => template("${module_name}/session/execsession.erb"),
     unless  => "iscsiadm -m node",
     require => Class['iscsi::service'],
   }
