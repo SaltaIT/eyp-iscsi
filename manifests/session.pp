@@ -12,9 +12,14 @@ define iscsi::session($ifaces, $portals, $target = $name) {
   validate_array($ifaces)
   validate_array($portals)
 
+  file { "/tmp/session-${ifaces}":
+    ensure => 'present',
+    content => template("${module_name}/session/execsession.erb"),
+  }
+
   exec { "interface iscsi ${target} ${ifaces} ${portals}":
     command => template("${module_name}/session/execsession.erb"),
-    unless  => "iscsiadm -m session | grep \"${target}\"",
+    unless  => "iscsiadm -m session",
     require => Class['iscsi::service'],
   }
 
