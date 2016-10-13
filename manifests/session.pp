@@ -14,7 +14,7 @@ define iscsi::session($ifaces, $portals, $target = $name) {
 
   exec { "interface iscsi ${target} ${ifaces} ${portals}":
     command => template("${module_name}/session/execsession.erb"),
-    unless  => "iscsiadm -m node",
+    unless  => "iscsiadm -m session | grep \"${target}\"",
     require => Class['iscsi::service'],
   }
 
