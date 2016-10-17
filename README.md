@@ -42,7 +42,7 @@ management, etc.) this is the time to mention it.
 
 ### Setup Requirements
 
-This module requires pluginsync enabled 
+This module requires pluginsync enabled
 
 ### Beginning with iscsi
 
