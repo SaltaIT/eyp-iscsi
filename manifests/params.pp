@@ -1,4 +1,4 @@
-class iscsi::params {
+  class iscsi::params {
 
   $package_name = 'iscsi-initiator-utils'
 
