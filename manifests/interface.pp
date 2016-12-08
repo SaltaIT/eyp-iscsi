@@ -1,6 +1,6 @@
 define iscsi::interface(
                           $interface = $name,
-                          $sethwaddr=false,
+                          $sethwaddr = false,
                         ) {
 
   Exec{
