@@ -40,6 +40,7 @@ RSpec.configure do |c|
       on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
       on host, puppet('module', 'install', 'eyp-eyplib'), { :acceptable_exit_codes => [0,1] }
       on host, puppet('module', 'install', 'eyp-multipathd'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'eyp-sysctl'), { :acceptable_exit_codes => [0,1] }
     end
   end
 end
