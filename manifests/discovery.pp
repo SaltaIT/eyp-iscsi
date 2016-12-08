@@ -15,7 +15,7 @@ define iscsi::discovery(
   if($debug)
   {
     file { "/tmp/discovery-${iface}":
-      ensure => 'present',
+      ensure  => 'present',
       content => template("${module_name}/discovery.erb"),
     }
   }

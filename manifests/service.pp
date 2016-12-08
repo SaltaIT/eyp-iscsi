@@ -16,13 +16,13 @@ class iscsi::service inherits iscsi {
     if($iscsi::manage_service)
     {
       service { 'iscsi':
-        ensure => $service_ensure,
-        enable => $service_enable,
+        ensure => $iscsi::service_ensure,
+        enable => $iscsi::service_enable,
       }
 
       service { 'iscsid':
-        ensure => $service_ensure,
-        enable => $service_enable,
+        ensure => $iscsi::service_ensure,
+        enable => $iscsi::service_enable,
       }
     }
   }
