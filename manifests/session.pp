@@ -1,5 +1,7 @@
 define iscsi::session($ifaces, $portals, $target = $name) {
 
+  # DEPRECATED, please use iscsi::discovery
+
   Exec{
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }

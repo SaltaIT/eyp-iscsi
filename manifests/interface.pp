@@ -1,4 +1,7 @@
-define iscsi::interface($interface = $name) {
+define iscsi::interface(
+                          $interface = $name,
+                          $sethwaddr=false,
+                        ) {
 
   Exec{
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
@@ -20,23 +23,24 @@ define iscsi::interface($interface = $name) {
   }
 
   #revisar:
-  # 
-  # iscsiadm --mode node --logoutall=all
+  #
   # iscsiadm -m iface -I eth4 --op=delete
   # iscsiadm -m iface -I eth5 --op=delete
   # iscsiadm -m iface -I eth4 --op=new
   # iscsiadm -m iface -I eth5 --op=new
-  # iscsiadm -m iface -I eth4 --op=update -n iface.hwaddress -v 00:21:f6:16:af:c5
-  # iscsiadm -m iface -I eth5 --op=update -n iface.hwaddress -v 00:21:f6:74:9a:b9
+  #
+  # iscsiadm -m iface -I eth4 --op=update -n iface.hwaddress -v $(ip a show eth4 | grep link | awk '{ print $2 }')
+  # iscsiadm -m iface -I eth5 --op=update -n iface.hwaddress -v $(ip a show eth5 | grep link | awk '{ print $2 }')
+
+  exec { "interface iscsi ${interface} sethwaddr":
+    command => "bash -c 'iscsiadm -m iface -I ${interface} --op=update -n iface.hwaddress -v $(ip a show ${interface} | grep link | awk \"{ print \$2 }\")'",
+  }
+
   # iscsiadm -m iface -I eth4 --op=update -n iface.mtu -v 9000
   # iscsiadm -m iface -I eth5 --op=update -n iface.mtu -v 9000
-  # iscsiadm -m iface -I eth4 --op=update -n iface.initiatorname -v iqn.1994-05.com.redhat:evl8800545
-  # iscsiadm -m iface -I eth5 --op=update -n iface.initiatorname -v iqn.1994-05.com.redhat:evl8800545
-  # iscsiadm -m iface -I eth4 --op=update -n iface.ipaddress -v 10.155.147.77
-  # iscsiadm -m iface -I eth --op=update -n iface.ipaddress -v 10.155.147.141
-  # iscsiadm -m discovery -t sendtargets -p 10.155.147.123 -p 10.155.147.124 -p 10.155.147.125 -p 10.155.147.126 -I eth4
-  # iscsiadm -m discovery -t sendtargets -p 10.155.147.187 -p 10.155.147.188 -p 10.155.147.189 -p 10.155.147.190 -I eth5
-  # iscsiadm -m node -l
-  # multipath -v2
+  # iscsiadm -m iface -I eth4 --op=update -n iface.initiatorname -v $(cat /etc/iscsi/initiatorname.iscsi  | cut -f2 -d=)
+  # iscsiadm -m iface -I eth5 --op=update -n iface.initiatorname -v $(cat /etc/iscsi/initiatorname.iscsi  | cut -f2 -d=)
+  # iscsiadm -m iface -I eth4 --op=update -n iface.ipaddress -v $(ip a s eth4 | grep inet | awk '{ print $2 }' | cut -f1 -d/)
+  # iscsiadm -m iface -I eth5 --op=update -n iface.ipaddress -v $(ip a s eth5 | grep inet | awk '{ print $2 }' | cut -f1 -d/)
 
 }
