@@ -1,6 +1,5 @@
 define iscsi::interface(
                           $interface = $name,
-                          $sethwaddr = false,
                         ) {
 
   Exec{
@@ -22,7 +21,7 @@ define iscsi::interface(
     require => Class['iscsi::install'],
   }
 
-  #revisar:
+  #tot això no te sentit:
   #
   # iscsiadm -m iface -I eth4 --op=delete
   # iscsiadm -m iface -I eth5 --op=delete
@@ -32,9 +31,15 @@ define iscsi::interface(
   # iscsiadm -m iface -I eth4 --op=update -n iface.hwaddress -v $(ip a show eth4 | grep link | awk '{ print $2 }')
   # iscsiadm -m iface -I eth5 --op=update -n iface.hwaddress -v $(ip a show eth5 | grep link | awk '{ print $2 }')
 
-  exec { "interface iscsi ${interface} sethwaddr":
-    command => "bash -c 'iscsiadm -m iface -I ${interface} --op=update -n iface.hwaddress -v $(ip a show ${interface} | grep link | awk \"{ print \$2 }\")'",
-  }
+  # exec { "interface iscsi ${interface} sethwaddr":
+  #   command => "bash -c 'iscsiadm -m iface -I ${interface} --op=update -n iface.hwaddress -v $(ip a show ${interface} | grep link | awk \"{ print \$2 }\")'",
+  # }
+
+  # [root@centos7 ~]# iscsiadm -m iface -I eth2 --op=update -n iface.hwaddress -v $(ip a show eth2 | grep link | awk "{ print \$2 }")
+  # iscsiadm: Can not update interface binding from net_ifacename to hwaddress. You must delete the interface and create a new one
+  # [root@centos7 ~]#
+
+  # si ja asignem una interficie a una interficie de iscsi la resta es absurd
 
   # iscsiadm -m iface -I eth4 --op=update -n iface.mtu -v 9000
   # iscsiadm -m iface -I eth5 --op=update -n iface.mtu -v 9000
