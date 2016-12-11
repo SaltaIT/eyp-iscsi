@@ -1,22 +1,28 @@
-define iscsi::session($ifaces, $portals, $target = $name) {
-
-  # DEPRECATED, please use iscsi::discovery
+define iscsi::session(
+                        $iface,
+                        $portals,
+                        $target = $name,
+                        $debug = false,
+                      ) {
 
   Exec{
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  validate_array($ifaces)
   validate_array($portals)
 
-  file { "/tmp/session-${ifaces}":
-    ensure  => 'present',
-    content => template("${module_name}/session/execsession.erb"),
+  if($debug)
+  {
+    file { "/tmp/session-${iface}":
+      ensure  => 'present',
+      content => template("${module_name}/session/execsession.erb"),
+    }
   }
 
-  exec { "interface iscsi ${target} ${ifaces} ${portals}":
+  #TODO: fer per iface
+  exec { "interface iscsi ${target} ${iface} ${portals}":
     command => template("${module_name}/session/execsession.erb"),
-    unless  => 'iscsiadm -m session',
+    unless  => "iscsiadm -m session -P 1 | grep "Iface Name" | grep eth5"
     require => Class['iscsi::service'],
   }
 
