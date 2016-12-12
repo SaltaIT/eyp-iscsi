@@ -21,7 +21,7 @@ define iscsi::interface(
     require => Class['iscsi::install'],
   }
 
-  #tot això no te sentit:
+  #tot aixo no te sentit:
   #
   # iscsiadm -m iface -I eth4 --op=delete
   # iscsiadm -m iface -I eth5 --op=delete
