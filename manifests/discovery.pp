@@ -23,7 +23,7 @@ define iscsi::discovery(
   exec { "interface iscsi ${iface} ${portals}":
     command => template("${module_name}/discovery.erb"),
     unless  => 'iscsiadm -m session',
-    require => Class['iscsi::service'],
+    require => [ Class['iscsi::service'], Iscsi::Interface[$iface] ],
   }
 
 }
