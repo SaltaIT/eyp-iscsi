@@ -22,7 +22,7 @@ define iscsi::session(
   #TODO: fer per iface
   exec { "interface iscsi ${target} ${iface} ${portals}":
     command => template("${module_name}/session/execsession.erb"),
-    unless  => "iscsiadm -m session -P 1 | grep "Iface Name" | grep eth5"
+    unless  => "iscsiadm -m session -P 1 | grep \"Iface Name\" | grep ${iface}"
     require => Class['iscsi::service'],
   }
 
