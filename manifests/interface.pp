@@ -1,5 +1,6 @@
 define iscsi::interface(
                           $interface = $name,
+                          $ensure    = 'present',
                         ) {
 
   Exec{
@@ -15,10 +16,20 @@ define iscsi::interface(
   # # iscsiadm -m iface -I eth3 -n iface.net_ifacename -v eth3 -o update
   # eth3 updated.
 
-  exec { "interface iscsi ${interface}":
-    command => "bash -c 'iscsiadm -m iface -I ${interface} -o new ; iscsiadm -m iface -I ${interface} -n iface.net_ifacename -v ${interface} -o update'",
-    unless  => "bash -c 'iscsiadm -m iface | grep ^${interface} | cut -f4 -d, | grep ${interface}'",
-    require => Class['iscsi::install'],
+  case $ensure
+  {
+    'present':
+    {
+      exec { "interface iscsi ${interface}":
+        command => "bash -c 'iscsiadm -m iface -I ${interface} -o new ; iscsiadm -m iface -I ${interface} -n iface.net_ifacename -v ${interface} -o update'",
+        unless  => "bash -c 'iscsiadm -m iface | grep ^${interface} | cut -f4 -d, | grep ${interface}'",
+        require => Class['iscsi::install'],
+      }
+    }
+    defautl:
+    {
+      fail('not implemented')
+    }
   }
 
   #tot aixo no te sentit:
