@@ -1,8 +1,8 @@
 # iscsiadm -m discovery -t sendtargets -p 1.2.3.4 -p 5.6.7.8 (...) -I eth0
 define iscsi::discovery(
                           $portals,
-                          $iface=$name,
-                          $debug=false
+                          $iface = $name,
+                          $debug = false
                         ) {
 
   Exec{
