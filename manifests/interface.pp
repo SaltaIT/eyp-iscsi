@@ -27,7 +27,7 @@ define iscsi::interface(
         tag     => 'eyp-iscsi-iface',
       }
     }
-    defautl:
+    default:
     {
       fail('not implemented')
     }
