@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.17
+
+* typo **iscsi::session**
+
 ## 0.1.16
 
 * added discovery

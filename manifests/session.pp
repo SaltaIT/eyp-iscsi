@@ -1,8 +1,8 @@
 define iscsi::session(
-                        $iface,
+                        $ifaces,
                         $portals,
                         $target = $name,
-                        $debug = false,
+                        $debug  = false,
                       ) {
 
   Exec{
