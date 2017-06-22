@@ -1,1 +1,1 @@
-iscsiadm -m discovery -t sendtargets <%= @portals.map{ |val| "-p #{val}" }.join(' ') %> -I <%= @iface %>
+iscsiadm -m discovery -t sendtargets <%= @portals.map{ |val| "-p #{val}" }.join(' ') %> <% if defined?(@ifaces) %><%= @ifaces.map{ |val| "-I #{val}" }.join(' ') %><% end %>
