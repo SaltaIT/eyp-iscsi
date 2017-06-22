@@ -1,5 +1,5 @@
 define iscsi::session(
-                        $ifaces,
+                        $iface,
                         $portals,
                         $target = $name,
                         $debug  = false,

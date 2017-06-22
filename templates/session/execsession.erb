@@ -1,3 +1,2 @@
-bash -c '<%- [@ifaces].flatten.each do |iface| -%>
-<%- [@portals].flatten.each do |portal| -%>
-iscsiadm -m node -l -T <%= @target %> -p <%= portal %> -I <%= iface %> ;<%- end -%><%- end -%>'
+bash -c '<%- [@portals].flatten.each do |portal| -%>
+iscsiadm -m node -l -T <%= @target %> -p <%= portal %> -I <%= @iface %> ;<%- end -%><%- end -%>'
