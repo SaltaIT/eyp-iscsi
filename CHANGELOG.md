@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.18
+
+* allow sessions to multiple targets (fixed unless)
+
 ## 0.1.17
 
 * typo **iscsi::session**
