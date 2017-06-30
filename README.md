@@ -46,11 +46,62 @@ This module requires pluginsync enabled
 
 ### Beginning with iscsi
 
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+```yaml
+interfaceiscsi:
+  'ens1f0': {}
+  'ens2f0': {}
+iscsidiscovery:
+  'any':
+    portals:
+      - '10.12.100.1'
+      - '10.12.100.2'
+      - '10.12.100.7'
+      - '10.12.100.8'
+sessions_iscsi:
+  'netapp12-ens1f0':
+    target: 'iqn.1992-08.com.netapp:sn.53231fdeadd211e7a31600a098a3f0a4:vs.34'
+    iface: 'ens1f0'
+    portals:
+      - '10.155.100.1'
+      - '10.155.100.2'
+  'netapp12-ens2f0':
+    target: 'iqn.1992-08.com.netapp:sn.53231fdeadd211e7a31600a098a3f0a4:vs.34'
+    iface: 'ens2f0'
+    portals:
+      - '10.12.100.1'
+      - '10.12.100.2'
+  'netapp78-ens1f0':
+    target: 'iqn.1992-08.com.netapp:sn.64b04deadbeef1e78e5f00a098a3f4ec:vs.14'
+    iface: 'ens1f0'
+    portals:
+      - '10.12.100.7'
+      - '10.12.100.8'
+  'netapp78-ens2f0':
+    target: 'iqn.1992-08.com.netapp:sn.64b04deadbeef1e78e5f00a098a3f4ec:vs.14'
+    iface: 'ens2f0'
+    portals:
+      - '10.12.100.7'
+      - '10.12.100.8'
+lun_alias:
+  'OracleRAC_backup':
+    wwid: '3600a0990886047282d244a4d55337852'
+  'OracleRAC_DB_Disk1':
+    wwid: '3600a0990886047282d244a4d55337855'
+  'OracleRAC_DB_Disk2':
+    wwid: '3600a0990886047282d244a4d55337856'
+  'OracleRAC_DB_Disk3':
+    wwid: '3600a0990886047282d244a4d55337857'
+  'OracleRAC_DB_Disk4':
+    wwid: '3600a0990886047282d244a4d55337858'
+  'OracleRAC_FRA_Disk1':
+    wwid: '3600a0990886047282d244a4d55337859'
+  'OracleRAC_OCR_Disk1':
+    wwid: '3600a0990886047282d244a4d5533785a'
+  'OracleRAC_FRA_Disk2':
+    wwid: '3600a09908860472845244a4e366f6679'
+  'OracleRAC_FRA_Disk3':
+    wwid: '3600a09908860472845244a4e366f667a'
+```
 
 ## Usage
 
