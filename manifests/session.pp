@@ -25,7 +25,7 @@ define iscsi::session(
 
   exec { "interface iscsi ${target} ${iface} ${portals}":
     command => template("${module_name}/session/execsession.erb"),
-    unless  => "iscsiadm -m session -P 1 | grep -E \"Iface Name|Iface Initiatorname\" | paste - - | grep ${iface} | grep ${target}",
+    unless  => "iscsiadm -m session -P 1 | grep -E \"Iface Name|Target\" | paste - - - - - | grep ${iface} | grep ${target}",
     require => Class['iscsi::service'],
     tag     => 'eyp-iscsi-session',
   }
