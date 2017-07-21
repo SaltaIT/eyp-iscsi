@@ -1,17 +1,17 @@
 {
   "name": "eyp-iscsi",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "author": "eyp",
   "summary": "iscsi initiator management",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-iscsi",
-  "project_page": null,
+  "project_page": "https://github.com/NTTCom-MS/eyp-iscsi",
   "issues_url": "https://github.com/NTTCom-MS/eyp-iscsi/issues",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0 < 9.9.9"},
-    {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"},
     {"name":"eyp/multipathd","version_requirement":">= 0.1.0 < 0.2.0"},
-    {"name":"eyp/sysctl","version_requirement":">= 0.2.14 < 0.3.0"}
+    {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"},
+    {"name":"eyp/sysctl","version_requirement":">= 0.2.14 < 0.4.0"}
   ],
   "operatingsystem_support": [
     {

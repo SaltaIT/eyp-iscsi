@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.19
+
+* bugfix **net.ipv4.conf.all.rp_filter**
+
 ## 0.1.18
 
 * allow sessions to multiple targets (fixed unless)
