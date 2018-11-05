@@ -1,7 +1,3 @@
-# == Class: iscsi
-#
-# === iscsi::install documentation
-#
 class iscsi::install inherits iscsi {
 
   if($iscsi::multipath)

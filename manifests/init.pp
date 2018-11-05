@@ -1,7 +1,3 @@
-# == Class: iscsi
-#
-# === iscsi documentation
-#
 class iscsi(
                             $manage_package        = true,
                             $package_ensure        = 'installed',
