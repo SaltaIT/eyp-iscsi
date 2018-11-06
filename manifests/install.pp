@@ -2,7 +2,7 @@ class iscsi::install inherits iscsi {
 
   if($iscsi::multipath)
   {
-    class { 'multipathd': }
+    include ::multipathd
   }
 
   if($iscsi::manage_package)

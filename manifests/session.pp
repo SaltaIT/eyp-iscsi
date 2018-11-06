@@ -9,8 +9,6 @@ define iscsi::session(
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  validate_array($portals)
-
   if($debug)
   {
     file { "/tmp/session-${iface}":
