@@ -1,6 +1,6 @@
 {
   "name": "eyp-iscsi",
-  "version": "0.1.19",
+  "version": "1.0.19",
   "author": "Jordi Prats",
   "summary": "iscsi initiator management",
   "license": "Apache-2.0",
