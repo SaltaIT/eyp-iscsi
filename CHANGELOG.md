@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.20
+
+* Added support for RHEL8
+
 ## 0.1.19
 
 * bugfix **net.ipv4.conf.all.rp_filter**
