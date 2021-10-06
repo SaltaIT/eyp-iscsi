@@ -8,7 +8,7 @@
     {
       case $::operatingsystemrelease
       {
-        /^[5-7].*$/:
+        /^[5-8].*$/:
         {
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
